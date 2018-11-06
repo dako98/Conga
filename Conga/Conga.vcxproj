@@ -115,14 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Conga.h" />
+    <ClInclude Include="CongaContainer.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="UniversityIDs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Conga.cpp" />
+    <ClCompile Include="CongaContainer.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Student.cpp" />
   </ItemGroup>

@@ -73,6 +73,7 @@ void Student::Clear()
 
 bool Student::IsCompatibleWith(const Student &other) const
 {
+
 	for (size_t i = 0; UNIVERSITY_FRIENDSHIPS[universityCode][i] != INVALID ; i++)
 	{
 		if (other.universityCode == UNIVERSITY_FRIENDSHIPS[universityCode][i])

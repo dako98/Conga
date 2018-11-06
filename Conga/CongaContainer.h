@@ -18,9 +18,11 @@ public:
 	void RemoveLast(int lineID);
 	void RemoveFirst(int lineID);
 
+	void DebugPrint() const;
+
 private:
 
-	int linesCount;
+//	int linesCount;
 
 	//Use dynamic array!
 //	List<Student>* lines;

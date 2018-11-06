@@ -10,6 +10,8 @@ class DynArray
 public:
 
 	DynArray();
+	DynArray(bool isSorted);
+
 	DynArray(const DynArray &other);
 
 	void Pushback(const T& newElement);
@@ -61,6 +63,15 @@ DynArray<T>::DynArray()
 	this->size = 0;
 	this->capacity = 2;
 	isSorted = false;
+}
+
+template<class T>
+DynArray<T>::DynArray(bool isSorted)
+	:isSorted(isSorted)
+{
+	this->elements = new T*[2];
+	this->size = 0;
+	this->capacity = 2;
 }
 
 template<class T>

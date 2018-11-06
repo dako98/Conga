@@ -96,6 +96,7 @@ public:
 	Iterator GetTail() const;
 
 	List SplitAfter(Iterator &target);
+	void Merge(List &other);
 
 private:
 
@@ -272,7 +273,6 @@ List<Type>::Box::Box(Type element, Box* next)
 { }
 
 
-//Rethink the pointers.
 template<class Type>
 List<Type> List<Type>::SplitAfter(Iterator &target)
 {
@@ -322,6 +322,31 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 	tail = target.node;
 
 	return tmp;
+}
+
+template<class Type>
+void List<Type>::Merge(List<Type> &other)
+{
+	List<Type>::Iterator it(begin());
+
+	while (it.node->next != nullptr)
+	{
+		++it;
+	}
+
+	it.node->next = other.head;
+
+
+	while (it.node->next != nullptr)
+	{
+		++it;
+	}
+
+	tail = it.node;
+
+
+	other.head = nullptr;
+	other.tail = nullptr;
 }
 
 

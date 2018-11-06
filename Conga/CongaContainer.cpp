@@ -6,7 +6,7 @@ void CongaContainer::AddPerson(
 	int lineID, const char* personName, const char* universityName)
 {
 
-	if (lineID >= lines.GetSize())
+	if (lineID > lines.GetSize())
 	{
 		throw std::out_of_range("Line does not exist!");
 	}
@@ -39,7 +39,7 @@ void CongaContainer::AddPerson(
 
 
 CongaContainer::CongaContainer()
-	:lines()
+	:lines(true)
 {
 	List<Student> initial;
 
@@ -128,4 +128,11 @@ void CongaContainer::Remove(int lineID, const char* name)
 	{
 		lines.Pushback(newList);
 	}
+}
+
+void CongaContainer::Merge(int line1, int line2)
+{
+	lines[line1].Merge(lines[line2]);
+
+	lines.Remove(line2);
 }

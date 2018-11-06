@@ -7,6 +7,7 @@
 int main()
 {
 
+	/*
 	List<Student> test;
 	List<Student> test2;
 
@@ -46,8 +47,68 @@ int main()
 
 	containerTest.Remove(0, "Ivan2");
 
+	test.Merge(test2);
+	
+	for (Student i : test)
+		i.DebugPrint();
+
+	std::cout << "------------------------------\n";
+
 
 	containerTest.Print();
+	*/
+
+
+	CongaContainer test;
+
+	test.AddPerson(0, "Ivan1", "FMI");
+	test.AddPerson(0, "Ivan2", "UNSS");
+	test.AddPerson(0, "Ivan3", "TU");
+	test.AddPerson(0, "Ivan4", "FMI");
+	test.AddPerson(0, "Ivan5", "FMI");
+
+	test.Print();
+	std::cout << "---------------------------\n";
+
+	test.AddPerson(1, "Ivan1", "FMI");
+	test.AddPerson(1, "Ivan2", "UNSS");
+	test.AddPerson(1, "Ivan3", "TU");
+	test.AddPerson(1, "Ivan4", "FMI");
+	test.AddPerson(1, "Ivan5", "FMI");
+
+	test.Print();
+	std::cout << "---------------------------\n";
+
+
+	test.RemoveLast(0);
+	test.RemoveFirst(1);
+
+	test.Print();
+	std::cout << "---------------------------\n";
+
+
+
+	test.Remove(0, "Ivan3");
+
+	test.Print();
+	std::cout << "---------------------------\n";
+
+
+
+	test.Merge(0, 1);
+
+	test.Print();
+	std::cout << "---------------------------\n";
+
+
+
+
+
+
+
+
+
+
 
 	return 0;
 }

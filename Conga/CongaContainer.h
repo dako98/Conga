@@ -18,6 +18,10 @@ public:
 	void RemoveLast(int lineID);
 	void RemoveFirst(int lineID);
 
+	void Print() const;
+
+	void Remove(int lineID, const char* name);
+
 	void DebugPrint() const;
 
 private:

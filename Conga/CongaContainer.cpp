@@ -75,6 +75,57 @@ void CongaContainer::DebugPrint() const
 	{
 		for (Student student : lines[i])
 			student.DebugPrint();
-		std::cout << "---------------";
+		std::cout << "---------------\n";
+	}
+}
+
+
+//Fix
+void CongaContainer::Print() const
+{
+	size_t linesCount = lines.GetSize();
+
+	for (size_t i = 0; i < linesCount; i++)
+	{
+		std::cout << "Line " << i << ": ";
+
+		for (Student student : lines[i])
+		{
+			student.Print();
+
+			std::cout << " - ";
+		}
+		std::cout << '\n';
+	}
+}
+
+
+void CongaContainer::Remove(int lineID, const char* name)
+{
+	List<Student>::Iterator element(lines[lineID].begin());
+
+	List<Student> newList;
+
+	/*
+	while (stricmp(element->GetName(), name)!=0)
+	{
+		++element;
+	}
+	*/
+
+	for (Student &st : lines[lineID])
+	{
+		if (stricmp(element->GetName(), name) == 0)
+		{
+			newList = lines[lineID].SplitAfter(element);
+			lines[lineID].PopBack();
+			break;
+		}
+		++element;
+	}
+
+	if (newList.begin()!=nullptr)
+	{
+		lines.Pushback(newList);
 	}
 }

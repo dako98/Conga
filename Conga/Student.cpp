@@ -33,6 +33,11 @@ void Student::DebugPrint() const
 		<< "\" UNIVERSITY: \"" << UNIVERSITY_NAMES[universityCode] <<"\"\n";
 }
 
+void Student::Print() const
+{
+	std::cout << "( " << name << " , " << UNIVERSITY_NAMES[universityCode] << " )";
+}
+
 void Student::Copy(const Student &other)
 {
 	this->name = new char[strlen(other.name) + 1];
@@ -82,4 +87,9 @@ bool Student::IsCompatibleWith(const Student &other) const
 		}
 	}
 	return false;
+}
+
+const char* const Student::GetName() const
+{
+	return name;
 }

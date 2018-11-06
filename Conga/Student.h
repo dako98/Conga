@@ -17,7 +17,9 @@ public:
 
 
 	void DebugPrint() const;
+	void Print() const;
 
+	const char* const GetName() const;
 
 private:
 

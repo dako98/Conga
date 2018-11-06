@@ -13,13 +13,11 @@ public:
 	List& operator=(const List &other);
 	~List();
 
-
 	void PushBack(const Type &element);
 	void PushFront(const Type &element);
 
 	void PopBack();
 	void PopFront();
-
 
 
 private:
@@ -97,6 +95,7 @@ public:
 
 	Iterator GetTail() const;
 
+	List SplitAfter(Iterator &target);
 
 private:
 
@@ -271,6 +270,61 @@ List<Type>::Box::Box(Type element, Box* next)
 	:data(element)
 	,next(next)
 { }
+
+
+//Rethink the pointers.
+template<class Type>
+List<Type> List<Type>::SplitAfter(Iterator &target)
+{
+	List<Type>::Iterator it(target);
+	//List<Type>* tmp = new List<Type>;
+	List<Type> tmp;
+
+	//Setting the new list's head as the element after the given iterator.
+	if (it.node->next != nullptr)
+	{
+		//tmp->head = (++it).node;
+		tmp.head = (++it).node;
+
+	}
+	//If the next element is nullptr, we return an empty list.
+	else
+	{
+		//tmp->head = nullptr;
+		//tmp->tail = nullptr;
+		tmp.head = nullptr;
+		tmp.tail = nullptr;
+		return tmp;
+	}
+
+	//Creating a second iterator.
+	List<Type>::Iterator currentIt(it);
+
+	//Setting the new list's tail by following the links.
+	while (it.node->next != nullptr)
+	{
+		//Following the links up to before the last element.
+			//tmp->tail = it.node;
+		tmp.tail = it.node;
+
+			++it;
+
+	}
+	//Setting the last element as the tail.
+	//tmp->tail = it.node;
+	tmp.tail = it.node;
+
+
+	//Closing off the link from the first list.
+	target.node->next=nullptr;
+
+	//Setting the element as the last one.
+	tail = target.node;
+
+	return tmp;
+}
+
+
 
 
 #endif // !_LIST_

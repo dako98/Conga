@@ -26,23 +26,3 @@ void CongaContainer::AddPerson(
 CongaContainer::CongaContainer()
 	:linesCount(0)
 { }
-
-CongaContainer::CongaContainer(const CongaContainer &other)
-{
-	Copy(other);
-}
-
-CongaContainer::CongaContainer& operator=(const CongaContainer &other)
-{
-	if (this!=&other)
-	{
-		Clear();
-		Copy();
-	}
-	return *this;
-}
-
-CongaContainer::~CongaContainer()
-{
-	Clear();
-}

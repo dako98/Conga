@@ -10,9 +10,7 @@ class CongaContainer
 public:
 
 	CongaContainer();
-	CongaContainer(const CongaContainer &other);
-	CongaContainer& operator=(const CongaContainer &other);
-	~CongaContainer();
+
 
 	void AddPerson(int lineID, const char* personName, const char* universityName);
 
@@ -24,7 +22,8 @@ private:
 	//Use dynamic array!
 	List<Student>* lines;
 
-
+	void Copy(const CongaContainer &other);
+	void Clear();
 };
 
 

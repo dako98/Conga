@@ -22,8 +22,6 @@ private:
 	//Use dynamic array!
 	List<Student>* lines;
 
-	void Copy(const CongaContainer &other);
-	void Clear();
 };
 
 

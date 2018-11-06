@@ -2,6 +2,7 @@
 #define _CONGA_CONTAINER_
 
 #include "List.h"
+#include "DynamicArray.h"
 #include "Student.h"
 
 class CongaContainer
@@ -20,7 +21,10 @@ private:
 	int linesCount;
 
 	//Use dynamic array!
-	List<Student>* lines;
+//	List<Student>* lines;
+
+	DynArray<List<Student>> lines;
+
 
 };
 

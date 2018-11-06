@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Conga.h" />
+    <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="UniversityIDs.h" />

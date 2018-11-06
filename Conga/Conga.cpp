@@ -25,4 +25,5 @@ void CongaContainer::AddPerson(
 
 CongaContainer::CongaContainer()
 	:linesCount(0)
+	, lines()
 { }

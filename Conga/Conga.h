@@ -15,6 +15,8 @@ public:
 
 	void AddPerson(int lineID, const char* personName, const char* universityName);
 
+	void RemoveLast(int lineID);
+	void RemoveFirst(int lineID);
 
 private:
 

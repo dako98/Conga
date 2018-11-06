@@ -12,7 +12,8 @@ public:
 	DynArray();
 	DynArray(const DynArray &other);
 
-	void Insert(const T& newElement);
+	void Pushback(const T& newElement);
+	void Remove(int index);
 
 	DynArray& operator=(const DynArray &other);
 
@@ -44,6 +45,15 @@ private:
 
 
 };
+
+
+
+
+
+
+
+
+
 template<class T>
 DynArray<T>::DynArray()
 {
@@ -156,14 +166,36 @@ void DynArray<T>::Clear()
 }
 
 template<class T>
-void DynArray<T>::Insert(const T& newElement)
+void DynArray<T>::Pushback(const T& newElement)
 {
 	if (size == capacity)
 		ResizeUp();
 
-	elements[size] = new T(newElement);
-	size++;
+		elements[size] = new T(newElement);
+		size++;
 }
+
+template<class T>
+void DynArray<T>::Remove(int index)
+{
+	delete elements[index];
+
+	if (!isSorted)
+	{
+		elements[index] = elements[size];
+		--size;
+	}
+	else
+	{
+		for (size_t i = index; i < size - 1; ++i)
+		{
+			elements[i] = elements[i + 1];
+		}
+		--size;
+	}
+}
+
+
 
 template<class T>
 void swap(T &a, T &b)
@@ -220,6 +252,7 @@ int DynArray<T>::Search(const T& target)
 		for (size_t i = 0; i < size; i++)
 			if (*elements[i] == target)
 				return i;
+		return -1;
 	}
 	return BinSearch(elements, size, target);
 }

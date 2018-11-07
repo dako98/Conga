@@ -100,15 +100,25 @@ int main()
 	test.Print();
 	std::cout << "---------------------------\n";
 
+	// append must check for compatibility
+	// append que to self is making infinite loop
 
 
 
+	std::cout << "=================================\n";
+
+	test.AddPerson(0, "pesho1", "unss");
+	test.AddPerson(0, "pesho2", "unss");
+	test.AddPerson(0, "pesho3", "tu");
+	//test.AddPerson(0,"gatka","unss");
+	test.Remove(0, "pesho1");
+	//test.AddPerson(1,"gatka","tu");
+	test.RemoveFirst(2);
+	//test.Append(1,1);		//infinite loop
+	test.Print();
 
 
-
-
-
-
+	system("pause");
 
 	return 0;
 }

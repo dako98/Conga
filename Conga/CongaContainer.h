@@ -21,7 +21,7 @@ public:
 	void Print() const;
 
 	void Remove(int lineID, const char* name);
-	void Merge(int line1, int line2);
+	void Append(int line1, int line2);
 
 	void DebugPrint() const;
 

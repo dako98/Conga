@@ -96,7 +96,7 @@ public:
 	Iterator GetTail() const;
 
 	List SplitAfter(Iterator &target);
-	void Merge(List &other);
+	void Append(List &other);
 
 private:
 
@@ -325,7 +325,7 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 }
 
 template<class Type>
-void List<Type>::Merge(List<Type> &other)
+void List<Type>::Append(List<Type> &other)
 {
 	List<Type>::Iterator it(begin());
 

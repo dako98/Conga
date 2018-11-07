@@ -130,9 +130,9 @@ void CongaContainer::Remove(int lineID, const char* name)
 	}
 }
 
-void CongaContainer::Merge(int line1, int line2)
+void CongaContainer::Append(int line1, int line2)
 {
-	lines[line1].Merge(lines[line2]);
+	lines[line1].Append(lines[line2]);
 
 	lines.Remove(line2);
 }

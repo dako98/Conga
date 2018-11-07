@@ -47,7 +47,7 @@ int main()
 
 	containerTest.Remove(0, "Ivan2");
 
-	test.Merge(test2);
+	test.Append(test2);
 	
 	for (Student i : test)
 		i.DebugPrint();
@@ -95,7 +95,7 @@ int main()
 
 
 
-	test.Merge(0, 1);
+	test.Append(0, 1);
 
 	test.Print();
 	std::cout << "---------------------------\n";

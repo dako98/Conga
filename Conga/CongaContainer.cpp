@@ -2,22 +2,16 @@
 #include <iostream>
 #include <stdexcept>
 
+//Throws std::out_of_range if line does not exist.
+//Throws std::logic_error when new person is incompatible.
 void CongaContainer::AddPerson(
 	int lineID, const char* personName, const char* universityName)
 {
 
 	if (lineID >= lines.GetSize())
 	{
-		throw std::out_of_range("Line does not exist!");
+		throw std::out_of_range("Line does not exist.");
 	}
-
-/*
-	if (lineID == lines.GetSize())
-	{
-		List<Student> empty;
-		lines.Pushback(empty);
-	}
-	*/
 
 	Student newElement = Student(personName, universityName);
 
@@ -52,7 +46,7 @@ void CongaContainer::RemoveLast(int lineID)
 {
 	lines[lineID].PopBack();
 
-	if (lines[lineID].begin()==nullptr)
+	if (lines[lineID].begin() == nullptr)
 	{
 		lines.Remove(lineID);
 	}
@@ -81,7 +75,7 @@ void CongaContainer::DebugPrint() const
 }
 
 
-//Fix
+//Fix " - " after last element.
 void CongaContainer::Print() const
 {
 	size_t linesCount = lines.GetSize();
@@ -125,12 +119,14 @@ void CongaContainer::Remove(int lineID, const char* name)
 		++element;
 	}
 
-	if (newList.begin()!=nullptr)
+	if (newList.begin() != nullptr)
 	{
 		lines.Pushback(newList);
 	}
 }
 
+//Throws std::logic_error if lines are incompatible.
+//Throws std::out_of_range if invalid lineIDs.
 void CongaContainer::Append(int line1, int line2)
 {
 	if (line1 != line2)

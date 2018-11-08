@@ -13,7 +13,8 @@ public:
 	CongaContainer();
 
 
-	void AddPerson(int lineID, const char* personName, const char* universityName);
+	void AddPerson(int lineID, const char* personName,
+		const char* universityName);
 
 	void RemoveLast(int lineID);
 	void RemoveFirst(int lineID);

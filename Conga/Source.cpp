@@ -87,7 +87,6 @@ int main()
 	std::cout << "---------------------------\n";
 
 
-
 	test.Remove(0, "Ivan3");
 
 	test.Print();

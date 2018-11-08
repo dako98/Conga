@@ -3,7 +3,8 @@
 #include "Student.h"
 #include "UniversityIDs.h"
 
-
+//Throws std::bad_alloc.
+//Throws std::invalid_argument for unknown university.
 Student::Student(const char* name, const char* universityName)
 	:name(nullptr)
 	,universityCode(INVALID)
@@ -38,6 +39,7 @@ void Student::Print() const
 	std::cout << "( " << name << " , " << UNIVERSITY_NAMES[universityCode] << " )";
 }
 
+//Throws std::bad_alloc.
 void Student::Copy(const Student &other)
 {
 	this->name = new char[strlen(other.name) + 1];

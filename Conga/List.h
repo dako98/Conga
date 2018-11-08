@@ -327,6 +327,7 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 template<class Type>
 void List<Type>::Append(List<Type> &other)
 {
+
 	List<Type>::Iterator it(begin());
 
 	while (it.node->next != nullptr)

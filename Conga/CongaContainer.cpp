@@ -6,17 +6,18 @@ void CongaContainer::AddPerson(
 	int lineID, const char* personName, const char* universityName)
 {
 
-	if (lineID > lines.GetSize())
+	if (lineID >= lines.GetSize())
 	{
 		throw std::out_of_range("Line does not exist!");
 	}
 
-
+/*
 	if (lineID == lines.GetSize())
 	{
 		List<Student> empty;
 		lines.Pushback(empty);
 	}
+	*/
 
 	Student newElement = Student(personName, universityName);
 
@@ -132,7 +133,15 @@ void CongaContainer::Remove(int lineID, const char* name)
 
 void CongaContainer::Append(int line1, int line2)
 {
-	lines[line1].Append(lines[line2]);
+	if (line1 != line2)
+	{
+		if (lines[line2].begin()->IsCompatibleWith(*lines[line1].GetTail()) == false)
+		{
+			throw std::logic_error("Incompatible students.");
+		}
 
-	lines.Remove(line2);
+		lines[line1].Append(lines[line2]);
+
+		lines.Remove(line2);
+	}
 }

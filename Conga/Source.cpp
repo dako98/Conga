@@ -120,7 +120,5 @@ int main()
 	test.Print();
 
 
-	system("pause");
-
 	return 0;
 }

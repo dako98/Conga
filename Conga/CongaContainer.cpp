@@ -94,7 +94,7 @@ void CongaContainer::Print() const
 	}
 }
 
-
+//Throws std::out_of_range for invalid lineID.
 void CongaContainer::Remove(int lineID, const char* name)
 {
 	List<Student>::Iterator element(lines[lineID].begin());

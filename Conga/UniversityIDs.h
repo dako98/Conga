@@ -15,7 +15,7 @@ enum UniversityCodes
 };
 
 //Must be in same order with UniversityCodes
-const char* UNIVERSITY_NAMES[] = {
+const char* UNIVERSITY_NAMES[UNIVERSITYS_COUNT] = {
 	"FMI",
 	"UNSS",
 	"TU"

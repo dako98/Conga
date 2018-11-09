@@ -41,7 +41,7 @@ CongaContainer::CongaContainer()
 	lines.Pushback(initial);
 }
 
-
+//Throws std::out_of_range if line does not exist.
 void CongaContainer::RemoveLast(int lineID)
 {
 	lines[lineID].PopBack();
@@ -52,6 +52,7 @@ void CongaContainer::RemoveLast(int lineID)
 	}
 }
 
+//Throws std::out_of_range if line does not exist.
 void CongaContainer::RemoveFirst(int lineID)
 {
 	lines[lineID].PopFront();
@@ -95,18 +96,12 @@ void CongaContainer::Print() const
 }
 
 //Throws std::out_of_range for invalid lineID.
+//Throws std::invalid_argument for invalid name.
 void CongaContainer::Remove(int lineID, const char* name)
 {
 	List<Student>::Iterator element(lines[lineID].begin());
 
 	List<Student> newList;
-
-	/*
-	while (stricmp(element->GetName(), name)!=0)
-	{
-		++element;
-	}
-	*/
 
 	for (Student &st : lines[lineID])
 	{
@@ -122,6 +117,10 @@ void CongaContainer::Remove(int lineID, const char* name)
 	if (newList.begin() != nullptr)
 	{
 		lines.Pushback(newList);
+	}
+	else
+	{
+		throw std::invalid_argument("Invalid name.");
 	}
 }
 

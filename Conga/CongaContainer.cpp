@@ -114,6 +114,11 @@ void CongaContainer::Remove(int lineID, const char* name)
 		++element;
 	}
 
+	if (lines[lineID].begin() == nullptr)
+	{
+		lines.Remove(lineID);
+	}
+
 	if (newList.begin() != nullptr)
 	{
 		lines.Pushback(newList);

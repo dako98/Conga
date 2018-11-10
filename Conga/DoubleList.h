@@ -25,10 +25,11 @@ private:
 
 	struct Box
 	{
-		Box(Type data, Box* next = nullptr);
+		Box(Type data, Box* next = nullptr, Box* previous = nullptr);
 
 		Type data;
 		Box* next;
+		Box* previous;
 	};
 
 public:
@@ -51,11 +52,27 @@ public:
 			return *this;
 		}
 
+		Iterator& operator--()
+		{
+			node = node->previous;
+
+			return *this;
+		}
+
 		Iterator operator++(int)
 		{
 			Iterator tmp(*this);
 
 			node = node->next;
+
+			return tmp;
+		}
+
+		Iterator operator--(int)
+		{
+			Iterator tmp(*this);
+
+			node = node->previous;
 
 			return tmp;
 		}
@@ -199,6 +216,7 @@ void List<Type>::PushBack(const Type &element)
 		return;
 	}
 
+	temp->previous = tail;
 	tail->next = temp;
 	tail = tail->next;
 }
@@ -220,15 +238,6 @@ void List<Type>::PopBack()
 {
 	if (head != nullptr)
 	{
-		//If there is only one element.
-		if (head == tail)
-		{
-			delete head;
-			head = nullptr;
-			tail = nullptr;
-			return;
-		}
-
 		Box* current = head;
 
 		while (current->next != tail &&
@@ -278,7 +287,7 @@ void List<Type>::RemoveAfter(const Iterator &target)
 template<class Type>
 List<Type>::Box::Box(Type element, Box* next)
 	:data(element)
-	,next(next)
+	, next(next)
 { }
 
 
@@ -316,7 +325,7 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 			//tmp->tail = it.node;
 		tmp.tail = it.node;
 
-			++it;
+		++it;
 
 	}
 	//Setting the last element as the tail.
@@ -325,7 +334,7 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 
 
 	//Closing off the link from the first list.
-	target.node->next=nullptr;
+	target.node->next = nullptr;
 
 	//Setting the element as the last one.
 	tail = target.node;

@@ -85,6 +85,7 @@ void CongaContainer::Print() const
 	{
 		std::cout << "Line " << i << ": ";
 
+
 		for (Student student : lines[i])
 		{
 			student.Print();
@@ -102,11 +103,13 @@ void CongaContainer::Remove(int lineID, const char* name)
 	List<Student>::Iterator element(lines[lineID].begin());
 
 	List<Student> newList;
+	bool found = false;
 
 	for (Student &st : lines[lineID])
 	{
 		if (stricmp(element->GetName(), name) == 0)
 		{
+			found = true;
 			newList = lines[lineID].SplitAfter(element);
 			lines[lineID].PopBack();
 			break;
@@ -114,7 +117,7 @@ void CongaContainer::Remove(int lineID, const char* name)
 		++element;
 	}
 
-	if (lines[lineID].begin() == nullptr)
+	if (lines[lineID].begin() == nullptr && newList.begin() != nullptr)
 	{
 		lines.Remove(lineID);
 	}
@@ -123,9 +126,10 @@ void CongaContainer::Remove(int lineID, const char* name)
 	{
 		lines.Pushback(newList);
 	}
-	else
+
+	if (!found)
 	{
-		throw std::invalid_argument("Invalid name.");
+		throw std::invalid_argument("Invalid name.\n");
 	}
 }
 

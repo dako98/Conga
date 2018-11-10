@@ -118,7 +118,6 @@
     <ClInclude Include="CongaContainer.h" />
     <ClInclude Include="DoubleList.h" />
     <ClInclude Include="DynamicArray.h" />
-    <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="UniversityIDs.h" />

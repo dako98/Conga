@@ -1,3 +1,7 @@
+#ifndef _MENU_
+#define _MENU_
+
+
 #include <iostream>
 #include <iomanip>
 #include "CongaContainer.h"
@@ -214,3 +218,4 @@ bool CommandParser(CongaContainer& target)
 
 
 
+#endif // !_MENU_

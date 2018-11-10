@@ -1,8 +1,14 @@
 #include <iostream>
 #include "CongaContainer.h"
 #include "Student.h"
-#include "List.h"
+//#include "List.h"
 #include "Menu.h"
+
+
+
+//TODO:
+//1. Fix printing.
+
 
 
 int main()

@@ -238,16 +238,21 @@ void List<Type>::PopBack()
 {
 	if (head != nullptr)
 	{
-		Box* current = head;
+		//If there is only one element.
+		if (head == tail)
+		{
+			delete head;
+			head = nullptr;
+			tail = nullptr;
+			return;
+		}
 
-		while (current->next != tail &&
-			current->next != nullptr)
+		Box* current = tail;
 
-			current = current->next;
+		current->previous->next = nullptr;
 
-		tail = current;
-		delete current->next;
-		current->next = nullptr;
+		tail = current->previous;
+		delete current;
 	}
 }
 
@@ -256,8 +261,18 @@ void List<Type>::PopFront()
 {
 	if (head != nullptr)
 	{
+		//If there is only one element.
+		if (head == tail)
+		{
+			delete head;
+			head = nullptr;
+			tail = nullptr;
+			return;
+		}
+
 		Box* target = head;
 		head = target->next;
+		head->previous = nullptr;
 		delete target;
 	}
 }
@@ -266,7 +281,7 @@ template<class Type>
 typename List<Type>::Iterator List<Type>::InsertAfter(const Iterator &target, const Type &element)
 {
 
-	Box* newElement = new Box(element, target.node->next);
+	Box* newElement = new Box(element, target.node->next, target.node);
 
 	target.node->next = newElement;
 
@@ -279,15 +294,17 @@ void List<Type>::RemoveAfter(const Iterator &target)
 	if (target.node != nullptr && target.node->next != nullptr)
 	{
 		Box* tmp = target.node->next->next;
+		target.node->next->next->previous = target;
 		delete target.node->next;
 		target.node->next = tmp;
 	}
 }
 
 template<class Type>
-List<Type>::Box::Box(Type element, Box* next)
+List<Type>::Box::Box(Type element, Box* next, Box* previous)
 	:data(element)
 	, next(next)
+	, previous(previous)
 { }
 
 
@@ -301,15 +318,13 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 	//Setting the new list's head as the element after the given iterator.
 	if (it.node->next != nullptr)
 	{
-		//tmp->head = (++it).node;
 		tmp.head = (++it).node;
-
+		it.node->previous = nullptr;
 	}
+
 	//If the next element is nullptr, we return an empty list.
 	else
 	{
-		//tmp->head = nullptr;
-		//tmp->tail = nullptr;
 		tmp.head = nullptr;
 		tmp.tail = nullptr;
 		return tmp;
@@ -322,14 +337,11 @@ List<Type> List<Type>::SplitAfter(Iterator &target)
 	while (it.node->next != nullptr)
 	{
 		//Following the links up to before the last element.
-			//tmp->tail = it.node;
 		tmp.tail = it.node;
 
 		++it;
-
 	}
 	//Setting the last element as the tail.
-	//tmp->tail = it.node;
 	tmp.tail = it.node;
 
 
@@ -354,7 +366,8 @@ void List<Type>::Append(List<Type> &other)
 	}
 
 	it.node->next = other.head;
-
+	++it;
+	it.node->previous = this->tail;
 
 	while (it.node->next != nullptr)
 	{

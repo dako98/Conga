@@ -4,12 +4,6 @@
 #include "Menu.h"
 
 
-
-//TODO:
-//1. Fix printing.
-
-
-
 int main()
 {
 	CongaContainer test;
@@ -18,12 +12,7 @@ int main()
 
 	while (running)
 	{
-
-
-
-
 		running = CommandParser(test);
-
 	}
 
 	return 0;

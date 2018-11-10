@@ -2,7 +2,6 @@
 #define _DYNAMIC_ARRAY_
 
 #include <stdexcept>
-#include "Student.h"
 
 template<class T>
 class DynArray

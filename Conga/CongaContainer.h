@@ -1,7 +1,6 @@
 #ifndef _CONGA_CONTAINER_
 #define _CONGA_CONTAINER_
 
-//#include "List.h"
 #include "DoubleList.h"
 #include "DynamicArray.h"
 #include "Student.h"

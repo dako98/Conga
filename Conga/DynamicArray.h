@@ -24,9 +24,6 @@ public:
 
 	size_t GetSize() const;
 
-	void Sort();
-	int Search(const T& target);
-
 
 	~DynArray();
 
@@ -34,7 +31,6 @@ public:
 private:
 
 	void ResizeUp();
-	void ResizeDown();
 	void Clear();
 	void Copy(const DynArray& other);
 
@@ -47,13 +43,6 @@ private:
 
 
 };
-
-
-
-
-
-
-
 
 
 template<class T>
@@ -80,6 +69,12 @@ DynArray<T>::DynArray(const DynArray& other)
 	Copy(other);
 }
 
+template<class T>
+DynArray<T>::~DynArray()
+{
+	Clear();
+}
+
 //-----------------------------------------------
 
 template<class T>
@@ -96,12 +91,6 @@ const T& DynArray<T>::operator[](size_t index) const
 	if (index >= size)	throw std::out_of_range("Out of range.");
 
 	return *elements[index];
-}
-
-template<class T>
-DynArray<T>::~DynArray()
-{
-	Clear();
 }
 
 template<class T>
@@ -131,39 +120,22 @@ void DynArray<T>::Copy(const DynArray &other)
 template<class T>
 void DynArray<T>::ResizeUp()
 {
-	T** temp = new T*[capacity * 2];
+	T** temp = new T*[capacity *= 2];
 
-	for (size_t i = 0; i < capacity; i++)
+	for (size_t i = 0; i < size; i++)
 	{
 		temp[i] = elements[i];
 	}
 	delete[] elements;
 
 	elements = temp;
-	temp = nullptr;
-}
-
-template<class T>
-void DynArray<T>::ResizeDown()
-{
-	if (size < capacity / 3)
-	{
-		T** temp = new T*[capacity / 3];
-
-		for (size_t i = 0; i < size; i++)
-		{
-			temp[i] = elements[i];
-		}
-		delete[] elements;
-
-		elements = temp;
-		temp = nullptr;
-	}
 }
 
 template<class T>
 void DynArray<T>::Clear()
 {
+
+
 	for (size_t i = 0; i < size; i++)
 	{
 		delete elements[i];
@@ -189,6 +161,11 @@ void DynArray<T>::Pushback(const T& newElement)
 template<class T>
 void DynArray<T>::Remove(int index)
 {
+	if (index < 0 || index >= size)
+	{
+		throw std::out_of_range("Out of range.");
+	}
+
 	delete elements[index];
 
 	if (!isSorted)
@@ -206,74 +183,10 @@ void DynArray<T>::Remove(int index)
 	}
 }
 
-
-
-template<class T>
-void swap(T &a, T &b)
-{
-	T temp = a;
-	a = b;
-	b = temp;
-}
-
-template<class T>
-void SelectionSort(T** arr, int size)
-{
-	for (size_t i = 0; i < size; i++)
-	{
-		for (size_t j = i + 1; j < size; j++)
-		{
-			if (*arr[j] < *arr[j])
-				swap(arr[i], arr[j]);
-		}
-	}
-}
-
-template<class T>
-void DynArray<T>::Sort()
-{
-	if (isSorted)	return;
-
-	SelectionSort(elements, size);
-	isSorted = true;
-}
-
-template<class T>
-int _BinSearch(int begin, int end, T** arr, T target)
-{
-	if (begin >= end && *arr[begin] != target) return -1;
-	else if (*arr[(begin + end) / 2] == target)	return (begin + end) / 2;
-	else if (*arr[(begin + end) / 2] < target) return _BinSearch(((begin + end) / 2) + 1, end, arr, target);
-	else return _BinSearch(begin, ((begin + end) / 2) - 1, arr, target);
-}
-
-template<class T>
-int BinSearch(T** arr, int size, T target)
-{
-	if (size == 0)
-		return -1;
-	return _BinSearch(0, size, arr, target);
-}
-
-template<class T>
-int DynArray<T>::Search(const T& target)
-{
-	if (!isSorted)
-	{
-		for (size_t i = 0; i < size; i++)
-			if (*elements[i] == target)
-				return i;
-		return -1;
-	}
-	return BinSearch(elements, size, target);
-}
-
 template<class T>
 size_t DynArray<T>::GetSize() const
 {
 	return size;
 }
-
-
 
 #endif // !_DYNAMIC_ARRAY_

@@ -295,7 +295,9 @@ void List<Type>::RemoveAfter(const Iterator &target)
 	{
 		Box* tmp = target.node->next->next;
 		target.node->next->next->previous = target;
+
 		delete target.node->next;
+
 		target.node->next = tmp;
 	}
 }
@@ -380,8 +382,5 @@ void List<Type>::Append(List<Type> &other)
 	other.head = nullptr;
 	other.tail = nullptr;
 }
-
-
-
 
 #endif // !_LIST_

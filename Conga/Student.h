@@ -17,7 +17,6 @@ public:
 	bool IsCompatibleWith(const Student &other) const;
 
 
-	void DebugPrint() const;
 	void Print() const;
 
 	const char* const GetName() const;

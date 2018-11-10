@@ -112,6 +112,11 @@ bool CommandParser(CongaContainer& target)
 			std::cout << e.what() << std::endl;
 			break;
 		}
+		catch (const std::bad_alloc& e)
+		{
+			std::cout << "Not enough memory." << std::endl;
+			break;
+		}
 		std::cout << "Successfuly added \"" << name << "\" from \"" << uni << "\" to line " << line1 << '.' << std::endl;
 		break;
 
@@ -167,6 +172,11 @@ bool CommandParser(CongaContainer& target)
 			std::cout << e.what();
 			break;
 		}
+		catch (const std::bad_alloc& e)
+		{
+			std::cout << "Not enough memory." << std::endl;
+			break;
+		}
 		std::cout << "Successfuly removed \"" << name << "\" from line " << line1 << '.' << std::endl;
 
 
@@ -212,10 +222,5 @@ bool CommandParser(CongaContainer& target)
 
 	return true;
 }
-
-
-
-
-
 
 #endif // !_MENU_

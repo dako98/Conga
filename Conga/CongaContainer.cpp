@@ -63,19 +63,6 @@ void CongaContainer::RemoveFirst(int lineID)
 	}
 }
 
-void CongaContainer::DebugPrint() const
-{
-	size_t linesCount = lines.GetSize();
-
-	for (size_t i = 0; i < linesCount; i++)
-	{
-		for (Student student : lines[i])
-			student.DebugPrint();
-		std::cout << "---------------\n";
-	}
-}
-
-
 //Fix " - " after last element.
 void CongaContainer::Print() const
 {
@@ -111,13 +98,20 @@ void CongaContainer::Remove(int lineID, const char* name)
 		{
 			found = true;
 			newList = lines[lineID].SplitAfter(element);
+
 			lines[lineID].PopBack();
+
 			break;
 		}
 		++element;
 	}
 
-	if (lines[lineID].begin() == nullptr && newList.begin() != nullptr)
+	if (!found)
+	{
+		throw std::invalid_argument("Invalid name.\n");
+	}
+
+	if (lines[lineID].begin() == nullptr && found)
 	{
 		lines.Remove(lineID);
 	}
@@ -127,10 +121,7 @@ void CongaContainer::Remove(int lineID, const char* name)
 		lines.Pushback(newList);
 	}
 
-	if (!found)
-	{
-		throw std::invalid_argument("Invalid name.\n");
-	}
+
 }
 
 //Throws std::logic_error if lines are incompatible.

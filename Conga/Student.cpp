@@ -28,12 +28,6 @@ Student::Student(const char* name, const char* universityName)
 	}
 }
 
-void Student::DebugPrint() const
-{
-	std::cout << "NAME: \"" << name
-		<< "\" UNIVERSITY: \"" << UNIVERSITY_NAMES[universityCode] <<"\"\n";
-}
-
 void Student::Print() const
 {
 	std::cout << "( " << name << " , " << UNIVERSITY_NAMES[universityCode] << " )";
@@ -56,7 +50,7 @@ Student::Student(const Student &other)
 
 Student& Student::operator=(const Student &other)
 {
-	if (this!=&other)
+	if (this != &other)
 	{
 		Clear();
 		Copy(other);

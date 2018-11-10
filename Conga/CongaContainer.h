@@ -16,6 +16,7 @@ public:
 
 	//Throws std::out_of_range if line does not exist.
 	//Throws std::logic_error when new person is incompatible.
+	//Throws std::bad_alloc if not enough memory.
 	void AddPerson(int lineID, const char* personName,
 		const char* universityName);
 
@@ -27,18 +28,18 @@ public:
 	void Print() const;
 
 	//Throws std::out_of_range if line does not exist.
+	//Throws std::bad_alloc if not enough memory.
 	void Remove(int lineID, const char* name);
 
 	//Throws std::logic_error if lines are incompatible.
 	//Throws std::out_of_range if invalid lineIDs.
 	void Append(int line1, int line2);
 
-	void DebugPrint() const;
+
 
 private:
 
 	DynArray<List<Student>> lines;
-
 
 };
 

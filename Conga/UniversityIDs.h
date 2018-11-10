@@ -1,7 +1,6 @@
 #ifndef _UNIVERSITY_IDS_
 #define _UNIVERSITY_IDS_
 
-//USE EXTERN!
 
 enum UniversityCodes
 {

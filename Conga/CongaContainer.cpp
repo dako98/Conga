@@ -77,7 +77,7 @@ void CongaContainer::Print() const
 		{
 			student.Print();
 
-			std::cout << " - ";
+			std::cout << "  ";
 		}
 		std::cout << '\n';
 	}

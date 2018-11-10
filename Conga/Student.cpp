@@ -30,7 +30,7 @@ Student::Student(const char* name, const char* universityName)
 
 void Student::Print() const
 {
-	std::cout << "( " << name << " , " << UNIVERSITY_NAMES[universityCode] << " )";
+	std::cout << "(" << name << ", " << UNIVERSITY_NAMES[universityCode] << ")";
 }
 
 //Throws std::bad_alloc.
